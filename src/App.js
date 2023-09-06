@@ -9,13 +9,11 @@ import { Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers,
 
 import './App.css'
 
-import { useStateContext } from './contexts/ContextProvider'
-
-
+import { useStateContext, themeSettings } from './contexts/ContextProvider'
 
 const App = () => {
 
-  const { activeMenu } = useStateContext()
+  const { activeMenu, themeSettings, setThemeSettings } = useStateContext()
 
   return (
     <div>      
@@ -27,6 +25,7 @@ const App = () => {
               className="text-3xl p-3
               hover: drop-shadow-xl
               hover: bg-light-gray text-white"
+              onClick={() => setThemeSettings(true)}
               style={{ background: 'blue',
               borderRadius: '50%' }}>
                 <FiSettings />
@@ -56,6 +55,9 @@ const App = () => {
             </div>
 
             <div>
+
+              {themeSettings && <ThemeSettings />}
+
               <Routes>
                   {/* dashboard  */}
                   <Route path="/" element={(<Ecommerce />)} />
